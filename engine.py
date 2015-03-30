@@ -583,8 +583,14 @@ class Engine:
 
         #dtree.reroot_at_node(new_root_node=not_out_mrca)
         
-        mrca = dtree.mrca(taxon_labels=outgroup)
+        cleaned_outgroup = []
+        for og in outgroup:
+            label = re.sub("_", " ", og)
+            cleaned_outgroup.append( label.__str__() )
         
+        print "lazarus 591:", cleaned_outgroup
+        mrca = dtree.mrca(taxon_labels=cleaned_outgroup)
+                
         """New for March 2015:"""
         if outgroup.__len__() == 1:
             mrca = mrca.parent_node
