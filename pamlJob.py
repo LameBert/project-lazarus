@@ -180,14 +180,12 @@ class BasemlJob(PamlJob):
         modelnumber = self.get_number_for_model(self.modelName)
         f.write("model = " + modelnumber.__str__() + "\n")
         if self.fix_asrv == False:
-            f.write("fix_alpha = 0\n")
+            f.write("fix_alpha = 0\n")        
         else:
             f.write("fix_alpha = 1\n")            
         if self.among_site_rate_variation:
-            f.write("alpha = " + self.alpha.__str__() + "\n")
             f.write("ncatG = 4\n")
-        else:
-            f.write("alpha = 0\n")
+        f.write("alpha = " + self.alpha.__str__() + "\n")
         
         f.write("RateAncestor = 2\n")
         f.write("Small_Diff = 1.0e-6\n")
